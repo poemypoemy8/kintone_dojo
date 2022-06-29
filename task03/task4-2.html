@@ -68,6 +68,36 @@ header h2 {
 </main>
 <script>
   // ここに処理を記載する
+  'use strict';
+
+  const secure_btn = document.getElementsByClassName('chk')[0].value;
+  const disc_btn = document.getElementsByClassName('chk')[1].value;
+  const secureNum = document.getElementsByClassName("slct")[0].value;
+  const discNum = document.getElementsByClassName('slct')[1].value;
+
+  document.getElementById('btn').onclick = () =>{
+   // console.log(secure_btn);
+    if(secure_btn === '250' && disc_btn === '1000'){
+      const calcPrice = (secure,disc) =>{
+        return 3900 + 250*secure + 1000*disc;
+      }
+      document.getElementById('price').textContent= calcPrice(secureNum,discNum);
+      console.log(secureNum,discNum); //selectタグのvalueがとれてない
+    }else if(secure_btn === '250' && disc_btn !== '1000'){
+      const calcPrice = (secure) =>{
+        return 3900 + 250*secure;
+      }
+      document.getElementById('price').textContent= calcPrice(secureNum);
+    }else{
+      const calcPrice = (disc) =>{
+        return 3900 + 1000*disc;
+      }
+      document.getElementById('price').textContent= calcPrice(discNum);
+      console.log(calcPrice(discNum));
+    }
+  };
+  // 参考：https://sarchitect.net/13029/ value属性を取得して状態の判定を行う
+  
 
 </script>
 </body>
