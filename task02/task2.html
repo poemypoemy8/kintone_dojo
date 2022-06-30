@@ -63,35 +63,36 @@ th,td{
       <th>削除権限</th>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="system"></td>
+      <td class="system"></td>
+      <td class="system"></td>
+      <td class="system"></td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="keiei"></td>
+      <td class="keiei"></td>
+      <td class="keiei"></td>
+      <td class="keiei"></td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="sales"></td>
+      <td class="sales"></td>
+      <td class="sales"></td>
+      <td class="sales"></td>
     </tr>
   </table>
   <h2>閲覧権限が全員にあるフォルダ</h2>
     <ul>
-      <li></li>
-      <li></li>
+      <li class="list"></li>
+      <li class="list"></li>
     </ul>
 </main>
 <script>
   // ここに処理を追記
 
-'use strict';
+  'use strict';
 
+  //task2-1
   const fileManage ={
     f001:{
       folderName:'情報システム部',
@@ -112,22 +113,50 @@ th,td{
       deleteAuth:'営業部'
     }
   }
+  
+  console.log(fileManage);
 
-  const fileArray = Object.keys(
-    fileManage.f001
-  );
+  //task2-2
+  const fileArray01 = Object.keys(fileManage.f001); // ['情報システム部','Everyone','情報システム部','情報システム部']
+  const fileArray02 = Object.keys(fileManage.f002); 
+  const fileArray03 = Object.keys(fileManage.f003);
+  const fileArray = fileArray01.concat(fileArray02,fileArray03);
+  //配列の結合 参考：https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
 
+  // key で変更する中身が存在する場所を指定
+  // 表の中身を変えたい場所の指定をどうすればいいか？
+  // クラス名を列でなく行でつける
+  // 配列のlengthだけ繰り返して、1ずつ増えていってほしい -> 計4回行ってほしい -> index番号！
+  // 左辺で要素を変更する場所の指定、右辺で変更する内容の設定
 
-  for(var i =0; i<fileArray.length; i++){
-    console.log(fileArray)
-  }
-
-  fileArray.forEach((key) => {
-    console.log(fileManage[key]);
+  fileArray01.forEach((key,index) => {
+    console.log(fileManage.f001[key]);
+    document.getElementsByClassName('system')[index].textContent = fileManage.f001[key];
   });
 
-  fileArray.forEach((key) => { 
-    document.getElementsByClassName(key).textContent = fileManage[key];
+  fileArray02.forEach((key,index) => {
+    console.log(fileManage.f002[key]);
+    document.getElementsByClassName('keiei')[index].textContent = fileManage.f002[key];
+  });
+
+  fileArray03.forEach((key,index) => {
+    console.log(fileManage.f003[key]);
+    document.getElementsByClassName('sales')[index].textContent = fileManage.f003[key];
+  });
+
+  //task2-3
+  //もし閲覧権限の中身がeveryoneだったら リストを 閲覧権限がeveryoneになっている**フォルダ名**に変更する
+  console.log(fileArray);
+
+  fileArray.forEach((key,index) => {
+    if(fileArray[index] === 'everyone'){
+      document.getElementsByClassName('list')[index].textContent = fileManage('everyone');
+    }
+  });
+
+  fileArray.forEach((key,index) => {
+    console.log(fileManage.f003[key]);
+    document.getElementsByClassName('list')[index].textContent = fileManage('everyone');
   });
 
 </script>
