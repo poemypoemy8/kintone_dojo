@@ -70,34 +70,43 @@ header h2 {
   // ここに処理を記載する
   'use strict';
 
-  const secure_btn = document.getElementsByClassName('chk')[0].value;
-  const disc_btn = document.getElementsByClassName('chk')[1].value;
-  const secureNum = document.getElementsByClassName("slct")[0].value;
-  const discNum = document.getElementsByClassName('slct')[1].value;
+  const secure_btn = document.getElementsByClassName('chk')[0];
+  const disc_btn = document.getElementsByClassName('chk')[1];
+  const secureNum = document.getElementsByClassName('slct')[0];
+  const discNum = document.getElementsByClassName('slct')[1];
+  const calcPrice = (secure,disc) =>{
+        return userPrice + 250*secure + 1000*disc;
+  }
+  const userPrice = 3900;
+  const securePrice= 250;
+  const discPrice = 1000;
 
   document.getElementById('btn').onclick = () =>{
-   // console.log(secure_btn);
+    // console.log(secureNum.value); //selectタグのvalueがとれてない
     if(secure_btn === '250' && disc_btn === '1000'){
       const calcPrice = (secure,disc) =>{
-        return 3900 + 250*secure + 1000*disc;
+        return userPrice + 250*secure + 1000*disc;
       }
-      document.getElementById('price').textContent= calcPrice(secureNum,discNum);
-      console.log(secureNum,discNum); //selectタグのvalueがとれてない
+      document.getElementById('price').textContent= calcPrice(secureNum.value,discNum.value);
+     
     }else if(secure_btn === '250' && disc_btn !== '1000'){
       const calcPrice = (secure) =>{
-        return 3900 + 250*secure;
+        return userPrice + 250*secure;
       }
-      document.getElementById('price').textContent= calcPrice(secureNum);
+      document.getElementById('price').textContent= calcPrice(secureNum.value);
     }else{
       const calcPrice = (disc) =>{
-        return 3900 + 1000*disc;
+        return userPrice + 1000*disc;
       }
-      document.getElementById('price').textContent= calcPrice(discNum);
-      console.log(calcPrice(discNum));
+      document.getElementById('price').textContent= calcPrice(discNum.value);
+      console.log(calcPrice(discNum.value));
     }
   };
   // 参考：https://sarchitect.net/13029/ value属性を取得して状態の判定を行う
   
+  
+// 引数がなんでもいい場合となんでもよくない場合
+// 
 
 </script>
 </body>
