@@ -82,31 +82,14 @@ header h2 {
   const discPrice = 1000;
 
   document.getElementById('btn').onclick = () =>{
-    // console.log(secureNum.value); //selectタグのvalueがとれてない
-    if(secure_btn === '250' && disc_btn === '1000'){
-      const calcPrice = (secure,disc) =>{
-        return userPrice + 250*secure + 1000*disc;
-      }
-      document.getElementById('price').textContent= calcPrice(secureNum.value,discNum.value);
-     
-    }else if(secure_btn === '250' && disc_btn !== '1000'){
-      const calcPrice = (secure) =>{
-        return userPrice + 250*secure;
-      }
-      document.getElementById('price').textContent= calcPrice(secureNum.value);
+    if(secure_btn.checked === true && disc_btn.checked === true){
+      document.getElementById('price').textContent= calcPrice(secureNum.value,discNum.value); //この時点での変数のvalueを取得
+    }else if(secure_btn.checked === true && disc_btn.checked === false){
+      document.getElementById('price').textContent= calcPrice(secureNum.value,0);
     }else{
-      const calcPrice = (disc) =>{
-        return userPrice + 1000*disc;
-      }
-      document.getElementById('price').textContent= calcPrice(discNum.value);
-      console.log(calcPrice(discNum.value));
+      document.getElementById('price').textContent= calcPrice(0,discNum.value);
     }
-  };
-  // 参考：https://sarchitect.net/13029/ value属性を取得して状態の判定を行う
-  
-  
-// 引数がなんでもいい場合となんでもよくない場合
-// 
+  }
 
 </script>
 </body>
