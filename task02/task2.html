@@ -118,9 +118,10 @@ th,td{
 
   //task2-2
   const fileArray01 = Object.keys(fileManage.f001); // ['情報システム部','Everyone','情報システム部','情報システム部']
-  const fileArray02 = Object.keys(fileManage.f002); 
-  const fileArray03 = Object.keys(fileManage.f003);
-  const fileArray = fileArray01.concat(fileArray02,fileArray03);
+  const fileArray02 = Object.keys(fileManage.f002); //
+  const fileArray03 = Object.keys(fileManage.f003); 
+  const num = 0;
+  //const fileArray = fileArray01.concat(fileArray02,fileArray03);
   //配列の結合 参考：https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
 
   // key で変更する中身が存在する場所を指定
@@ -129,35 +130,33 @@ th,td{
   // 配列のlengthだけ繰り返して、1ずつ増えていってほしい -> 計4回行ってほしい -> index番号！
   // 左辺で要素を変更する場所の指定、右辺で変更する内容の設定
 
+
   fileArray01.forEach((key,index) => {
-    console.log(fileManage.f001[key]);
     document.getElementsByClassName('system')[index].textContent = fileManage.f001[key];
+    if(fileManage.f001[key] === 'Everyone'){
+      document.getElementsByClassName('list')[num].textContent = fileManage.f001.folderName;
+    }
   });
 
   fileArray02.forEach((key,index) => {
-    console.log(fileManage.f002[key]);
     document.getElementsByClassName('keiei')[index].textContent = fileManage.f002[key];
+    if(fileManage.f002[key] === 'Everyone'){
+      document.getElementsByClassName('list')[num+1].textContent = fileManage.f002.folderName;
+    }
   });
 
   fileArray03.forEach((key,index) => {
-    console.log(fileManage.f003[key]);
     document.getElementsByClassName('sales')[index].textContent = fileManage.f003[key];
+    if(fileManage.f003[key] === 'Everyone'){
+      document.getElementsByClassName('list')[num+1].textContent = fileManage.f003.folderName;
+    }
   });
 
   //task2-3
   //もし閲覧権限の中身がeveryoneだったら リストを 閲覧権限がeveryoneになっている**フォルダ名**に変更する
-  console.log(fileArray);
+  //合致していたら、listの変更する場所を変えるために、もしeveryoneだったら引数に1を追加する
+  
 
-  fileArray.forEach((key,index) => {
-    if(fileArray[index] === 'everyone'){
-      document.getElementsByClassName('list')[index].textContent = fileManage('everyone');
-    }
-  });
-
-  fileArray.forEach((key,index) => {
-    console.log(fileManage.f003[key]);
-    document.getElementsByClassName('list')[index].textContent = fileManage('everyone');
-  });
 
 </script>
 </body>
