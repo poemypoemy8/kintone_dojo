@@ -141,14 +141,14 @@ th,td{
   fileArray02.forEach((key,index) => {
     document.getElementsByClassName('keiei')[index].textContent = fileManage.f002[key];
     if(fileManage.f002[key] === 'Everyone'){
-      document.getElementsByClassName('list')[num+1].textContent = fileManage.f002.folderName;
+      document.getElementsByClassName('list')[num].textContent = fileManage.f002.folderName;
     }
   });
 
   fileArray03.forEach((key,index) => {
     document.getElementsByClassName('sales')[index].textContent = fileManage.f003[key];
     if(fileManage.f003[key] === 'Everyone'){
-      document.getElementsByClassName('list')[num+1].textContent = fileManage.f003.folderName;
+      document.getElementsByClassName('list')[num].textContent = fileManage.f003.folderName;
     }
   });
 
