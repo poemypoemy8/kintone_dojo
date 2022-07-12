@@ -57,19 +57,26 @@ header h2 {
   const secure_btn = document.getElementsByClassName('chk')[0]; //チェックボックスの名前
   const disc_btn = document.getElementsByClassName('chk')[1];  // チェックボックスの名前
   const calcPrice = (secure,disc) =>{
-        return secure_btn.value*secure + disc_btn.value*disc;
+        return 250*secure + 1000*disc;
       }
+  let price = 3900;
    
     secure_btn.onclick = () => {
-      if(secure_btn.checked === true){ //セキュアボタンが入っていたら
-        price += calcPrice(5,0);
-        document.getElementById('price').textContent = price;
+        if(secure_btn.checked === true){ //セキュアボタンが入っていたら
+          price += calcPrice(5,0);
+          document.getElementById('price').textContent = price;
+        }else if(secure_btn.checked !== true){ //セキュアボタンが入っていなかったら
+          price -= calcPrice(5,0);
+          document.getElementById('price').textContent = price;
+        }
       }
-    }
 
     disc_btn.onclick = () => {
       if(disc_btn.checked === true){ //ディスクボタンが入っていたら
         price += calcPrice(0,1);
+        document.getElementById('price').textContent = price;
+      }else if (disc_btn.checked !== true){
+        price -= calcPrice(0,1);
         document.getElementById('price').textContent = price;
       }
     }

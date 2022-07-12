@@ -80,14 +80,17 @@ header h2 {
   let userPrice = 3900;
 
    document.getElementById('btn').onclick = () =>{
+    let userPrice = 3900;
     if(secure_btn.checked === true){
-      userPrice += calcPrice(secureNum.value,0); 
-      document.getElementById('price').textContent = userPrice; //userPriceに値を足して代入
-    }else if(disc_btn.checked === true){
+      let securePrice = userPrice + calcPrice(secureNum.value,0); 
+      document.getElementById('price').textContent = securePrice; //userPriceに値を足して代入
+        if(disc_btn.checked === true){
+          securePrice += calcPrice(0,discNum.value); 
+          document.getElementById('price').textContent= securePrice;
+        }
+    }else if(secure_btn.checked !== true){
       userPrice += calcPrice(0,discNum.value); 
-      document.getElementById('price').textContent= userPrice;
-    }else{
-      document.getElementById('price').textContent= userPrice;
+      document.getElementById('price').textContent = userPrice; 
     }
   }
 
