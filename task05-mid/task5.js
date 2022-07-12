@@ -51,20 +51,6 @@
     });
 })();
 
-//これまでのobjectの課題と同じで、繰り返し処理をしてid指定。
-//getelementbyidを書けば行けそうな感じがする
-//表示するニュースの件数によってデザインが変わる -> 記事の数だけhtml要素を作る必要がある？
-  //apndChildとか要素をつくるやつ -> HTML要素いらない
-  //forEachでdataの数だけ回して表要素つくる？
-    //中で書くやつ）もしカテゴリが○○なら何色、else if カテゴリ○○なら何色、else カテゴリ○○なら何色
-    //もしtargetが○○ならリンク先に遷移。リンクの末尾に targetblankもしくはそうじゃないやつを指定
-
-
-// aタグでいつもは入れている。
-// table要素の中にaタグをappendchildする形でつくる。
-// 文字列はいつもと同じ形で取得して、リンクはhrefで作成。
-
-
 
 //参考URL:https://cly7796.net/blog/javascript/get-json-using-axios/
 //参考URL:https://teratail.com/questions/223785 （読み込み順番）
