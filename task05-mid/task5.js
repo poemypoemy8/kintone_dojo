@@ -46,8 +46,7 @@
 
     })
     .catch((err) =>{
-        console.log('失敗');
-        console.log(err);
+      //取得失敗時 今回はskip
     });
 })();
 
