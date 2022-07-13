@@ -1,4 +1,4 @@
-( () =>{
+(() => {
 
   'use strict';
 
@@ -6,22 +6,22 @@
   const year = today.getFullYear(); // 2022
   let month = today.getMonth() + 1; // 7
   let date = today.getDate();
-  month = ('0' +month).slice(-2);
+  month = ('0' + month).slice(-2);
   date = ('0' + date).slice(-2);
   const YYYYMMDD = year + month + date;
-  let product =''; // 製品の値のグローバル変数
+  let product = ''; // 製品の値のグローバル変数
   let number = ''; // 管理番号のグローバル変数
 
-  kintone.events.on(['app.record.create.show','app.record.edit.show'],(event) => {
+  kintone.events.on(['app.record.create.show', 'app.record.edit.show'], (event) => {
     event.record.重複禁止項目_文字列.disabled = true;
     event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-${product}-${number}`;
     return event;
   });
 
-  kintone.events.on(['app.record.create.change.サイボウズ製品','app.record.edit.change.サイボウズ製品'],(event) =>{
+  kintone.events.on(['app.record.create.change.サイボウズ製品', 'app.record.edit.change.サイボウズ製品'], (event) => {
     product = event.record.サイボウズ製品.value;
 
-    switch (product){
+    switch (product) {
       case 'kintone':
         product = 'KN';
         event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-${product}-${number}`;
@@ -44,7 +44,7 @@
 
   });
 
-  kintone.events.on(['app.record.create.change.管理番号','app.record.edit.change.管理番号'],(event)=>{
+  kintone.events.on(['app.record.create.change.管理番号', 'app.record.edit.change.管理番号'], (event) => {
     number = event.record.管理番号.value;
     event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-${product}-${number}`;
     return event;
