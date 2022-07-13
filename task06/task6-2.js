@@ -22,9 +22,9 @@
             'value':['未振り返り']
           }
         }
-      } 
+      }; 
       event.record.Table.value[index] = newRow[index];
-    })
+    });
 
     return event;
 
