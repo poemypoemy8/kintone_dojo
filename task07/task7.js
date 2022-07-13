@@ -13,7 +13,6 @@
     let number = ''; //管理番号のグローバル変数
 
     kintone.events.on(['app.record.create.show','app.record.edit.show'],(event) => {
-      console.log(event);
       event.record.重複禁止項目_文字列.disabled = true;
       event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-${product}-${number}`;
       return event;
