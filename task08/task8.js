@@ -2,7 +2,6 @@
   'use strict';
 
   kintone.events.on('app.record.create.show', (event) => {
-    console.log(event);
 
     const params = {
       app: event.appId,
@@ -10,7 +9,6 @@
 
     return kintone.api(kintone.api.url('/k/v1/app/form/fields.json', true),'GET',params).then((resp) => {
       
-      console.log(resp);
       const options = resp.properties.Table.fields.Action5.options;
 
       let sortedArray = Object.keys(options).map((key) => {
@@ -19,13 +17,12 @@
         return (a.index < b.index) ? -1 : 1
       });
 
-      console.log(sortedArray); //debug
+      const action5 = sortedArray.map((action) => {
+        return action['label'];
+      })
+    
       const newRow = [];
-
-      // sortedArray のラベルを取り出してきて、配列に順番に入れる
-      // 順番に入れた配列に対してforeachをかけてnewRowに入れる
-
-   
+      
       action5.forEach((val, index) => {
         newRow[index] = {
           'value': {
@@ -50,9 +47,6 @@
     }).catch((err) => {
       return event;
     })
-    
-
-    return event;
 
   });
   
