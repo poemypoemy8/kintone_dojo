@@ -1,28 +1,28 @@
-(() =>{
+(() => {
   'use strict';
 
   kintone.events.on('app.record.create.show', (event) => {
 
     const params = {
       app: event.appId,
-    }
+    };
 
-    return kintone.api(kintone.api.url('/k/v1/app/form/fields.json', true),'GET',params).then((resp) => {
-      
+    return kintone.api(kintone.api.url('/k/v1/app/form/fields.json', true), 'GET', params).then((resp) => {
+
       const options = resp.properties.Table.fields.Action5.options;
 
-      let sortedArray = Object.keys(options).map((key) => {
+      const sortedArray = Object.keys(options).map((key) => {
         return options[key];
-      }).sort((a,b) => {
-        return (a.index < b.index) ? -1 : 1
+      }).sort((a, b) => {
+        return (a.index < b.index) ? -1 : 1;
       });
 
       const action5 = sortedArray.map((action) => {
         return action['label'];
-      })
-    
+      });
+
       const newRow = [];
-      
+
       action5.forEach((val, index) => {
         newRow[index] = {
           'value': {
@@ -41,16 +41,16 @@
           }
         };
         event.record.Table.value[index] = newRow[index];
-      });        
+      });
       return event;
 
     }).catch((err) => {
       return event;
-    })
+    });
 
   });
-  
+
 })();
 
-  // 参考URL https://keizokuma.com/js-array-object-sort/
-  // 参考URL https://developer.cybozu.io/hc/ja/articles/360023047852 なぜreturnがいるのかわからない…
+// 参考URL https://keizokuma.com/js-array-object-sort/
+// 参考URL https://developer.cybozu.io/hc/ja/articles/360023047852 なぜreturnがいるのかわからない…
