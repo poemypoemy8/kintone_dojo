@@ -2,13 +2,7 @@
 
   'use strict';
 
-  const today = new Date();
-  const year = today.getFullYear(); // 2022
-  let month = today.getMonth() + 1; // 7
-  let date = today.getDate();
-  month = ('0' + month).slice(-2);
-  date = ('0' + date).slice(-2);
-  const YYYYMMDD = year + month + date;
+  const YYYYMMDD = dateFns.format(new Date(), 'YYYYMMDD'); //日付のグローバル変数
   let product = ''; // 製品の値のグローバル変数
   let number = ''; // 管理番号のグローバル変数
 
