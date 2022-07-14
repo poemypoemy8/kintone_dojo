@@ -53,4 +53,4 @@
 })();
 
 // 参考URL https://keizokuma.com/js-array-object-sort/
-// 参考URL https://developer.cybozu.io/hc/ja/articles/360023047852 なぜreturnがいるのかわからない…
+// 参考URL https://developer.cybozu.io/hc/ja/articles/360023047852
