@@ -20,7 +20,7 @@
 
     YYYYMMDD = dateFns.format(event.record.日付.value, 'YYYYMMDD');
     const product = event.record.サイボウズ製品.value;
-    const number = event.record.管理番号.value; 
+    const number = event.record.管理番号.value;
 
     switch (product) {
       case 'kintone':
