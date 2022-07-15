@@ -10,29 +10,11 @@
     return kintone.api(kintone.api.url('/k/v1/app/form/fields.json', true), 'GET', params).then((resp) => {
       console.log(resp);
       const options = resp.properties.Table.fields.Action5.options;
-      // options を index順に並べて、配列action5に変換したい
-      // options の要素を index順に並べて、配列action5 に順番に入れたい
 
       const action5 = []; 
       Object.keys(options).forEach((val) => {
-        for (let i = 0; i < Object.keys(options).length; i++) {
-          if(options[val].index[i]){
-            return action5 = options[val].label;
-            console.log(action5);
-          } // options[val].index[i] のときのoption[label]をaction5に入れたい -> 順番通り並ぶ？
-        }
-        return action5;
+        action5[options[val].index] = options[val].label;
       })
-
-      // const sortedArray = Object.keys(options).map((key) => {
-      //   return options[key];
-      // }).sort((a, b) => {
-      //   return (a.index < b.index) ? -1 : 1;
-      // });
-
-      // const action5 = sortedArray.map((action) => {
-      //   return action['label'];
-      // });
 
       const newRow = [];
 
@@ -58,6 +40,7 @@
       return event;
 
     }).catch((err) => {
+      console.log(err);
       return event;
     });
 
