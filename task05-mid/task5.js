@@ -7,6 +7,8 @@
   })
     .then((resp) => {
       // 取得成功時
+      console.log(resp); //debug
+
       const tableElement = document.getElementById('table');
       resp.data.forEach((value, index) => {
         const tr = document.createElement('tr');
@@ -19,6 +21,7 @@
         document.getElementById((index) + '-' + 1).textContent = resp.data[index].day.value;
         document.getElementById((index) + '-' + 2).textContent = resp.data[index].category.value;
         document.getElementById((index) + '-' + 2).style.color = '#fff';
+        
         const label = resp.data[index].label.value;
         switch (label) {
           case 'product':
@@ -46,6 +49,7 @@
     })
     .catch((err) => {
       // 取得失敗時 今回はskip
+      console.log(err);
     });
 })();
 
