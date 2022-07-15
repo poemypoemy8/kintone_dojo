@@ -11,10 +11,10 @@
       console.log(resp);
       const options = resp.properties.Table.fields.Action5.options;
 
-      const action5 = []; 
+      const action5 = [];
       Object.keys(options).forEach((val) => {
         action5[options[val].index] = options[val].label;
-      })
+      });
 
       const newRow = [];
 
