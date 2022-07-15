@@ -3,12 +3,9 @@
   'use strict';
 
   let YYYYMMDD = dateFns.format(new Date(), 'YYYYMMDD'); // 日付のグローバル変数
-  let product = ''; // 製品の値のグローバル変数
-  let number = ''; // 管理番号のグローバル変数
 
   kintone.events.on(['app.record.create.show', 'app.record.edit.show'], (event) => {
     event.record.重複禁止項目_文字列.disabled = true;
-    event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-${product}-${number}`;
     return event;
   });
 
@@ -22,27 +19,21 @@
   ], (event) => {
 
     YYYYMMDD = dateFns.format(event.record.日付.value, 'YYYYMMDD');
-    product = event.record.サイボウズ製品.value;
-    number = event.record.管理番号.value;
-
-    event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-${product}-${number}`;
+    const product = event.record.サイボウズ製品.value;
+    const number = event.record.管理番号.value; 
 
     switch (product) {
       case 'kintone':
-        product = 'KN';
-        event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-${product}-${number}`;
+        event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-KN-${number}`;
         break;
       case 'Garoon':
-        product = 'GR';
-        event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-${product}-${number}`;
+        event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-GR-${number}`;
         break;
       case 'サイボウズ Office':
-        product = 'OF';
-        event.record.重複禁止項目_文字列.value = `${YYYYMMDD}+${product}+${number}`;
+        event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-OF-${number}`;
         break;
       case 'Mailwise':
-        product = 'MW';
-        event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-${product}-${number}`;
+        event.record.重複禁止項目_文字列.value = `${YYYYMMDD}-MW-${number}`;
         break;
     }
 
