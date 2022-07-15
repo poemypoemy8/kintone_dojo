@@ -27,7 +27,6 @@
       return event;
     }).catch((err) => {
       console.log(err);
-      return event;
     })
   })
 
