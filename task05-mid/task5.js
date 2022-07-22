@@ -10,12 +10,13 @@
       const tableElement = document.getElementById('table');
 
       resp.data.forEach((val, index) => { // 行数をニュースの数文増やしている
-        tableElement.innerHTML  += `<tr id = "${index}"></tr>`;
 
-        const tableData = document.getElementById(`${index}`);
-        tableData.innerHTML += `<td><p class = "day">${resp.data[index].day.value}</p></td>`;
-        tableData.innerHTML += `<td  class = "category"><p>${resp.data[index].category.value}</p></td>`;
-        tableData.innerHTML += `<td><a class = "content" link>${resp.data[index].content.value}</a></td>`;
+        tableElement.innerHTML  += 
+        `<tr>
+          <td><p class = "day">${resp.data[index].day.value}</p></td>
+          <td class = "category"><p>${resp.data[index].category.value}</p></td>
+          <td><a class = "content" link>${resp.data[index].content.value}</a></td>
+        </tr>`;
 
         const label = resp.data[index].label.value;
         switch (label) {
