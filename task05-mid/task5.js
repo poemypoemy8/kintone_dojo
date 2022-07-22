@@ -10,16 +10,16 @@
       const tableElement = document.getElementById('table');
 
       resp.data.forEach((val, index) => { // 行数をニュースの数文増やしている
-      const tr = document.createElement('tr');
-      tableElement.appendChild(tr);
-      tr.setAttribute('id',`${index}`);
+        const tr = document.createElement('tr');
+        tableElement.appendChild(tr);
+        tr.setAttribute('id', `${index}`);
 
-      const tableData = document.getElementById(`${index}`);
- 
-      tableData.innerHTML += `<td><p class = "day" >${resp.data[index].day.value}</p></td>`;
-      tableData.innerHTML += `<td  class = "category" ><p>${resp.data[index].category.value}</p></td>`;
-      tableData.innerHTML += `<td><a class = "content" link>${resp.data[index].content.value}</a></td>`;
-            
+        const tableData = document.getElementById(`${index}`);
+
+        tableData.innerHTML += `<td><p class = "day">${resp.data[index].day.value}</p></td>`;
+        tableData.innerHTML += `<td  class = "category"><p>${resp.data[index].category.value}</p></td>`;
+        tableData.innerHTML += `<td><a class = "content" link>${resp.data[index].content.value}</a></td>`;
+
         const label = resp.data[index].label.value;
         switch (label) {
           case 'product':
@@ -40,7 +40,7 @@
           content.setAttribute('target', '_self');
         } else if (resp.data[index].target.value === '_blank') {
           content.setAttribute('target', '_blank');
-        };
+        }
 
       });
 
