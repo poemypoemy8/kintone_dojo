@@ -9,91 +9,39 @@
       // 取得成功時
       const tableElement = document.getElementById('table');
 
-      console.log(resp); //debug
       resp.data.forEach((val, index) => { // 行数をニュースの数文増やしている
       const tr = document.createElement('tr');
       tableElement.appendChild(tr);
       tr.setAttribute('id',`${index}`);
-      // tableElement.innerHTML = `<tr id="${index}"></tr>`;
-      console.log(tableElement.innerHTML);
 
-      // なぜか getelementid で table要素を取得すると、 tbody 要素まで取得されてしまう。
-      // それが悪さをしているっぽい感じがする。 -> 
+      const tableData = document.getElementById(`${index}`);
+ 
+      tableData.innerHTML += `<td><p class = "day" >${resp.data[index].day.value}</p></td>`;
+      tableData.innerHTML += `<td  class = "category" ><p>${resp.data[index].category.value}</p></td>`;
+      tableData.innerHTML += `<td><a class = "content" link>${resp.data[index].content.value}</a></td>`;
+            
+        const label = resp.data[index].label.value;
+        switch (label) {
+          case 'product':
+            document.getElementsByClassName('category')[index].classList.add('product');
+            break;
+          case 'ir':
+            document.getElementsByClassName('category')[index].classList.add('ir');
+            break;
+          case 'company':
+            document.getElementsByClassName('category')[index].classList.add('company');
+            break;
+        }
 
-      // const tr = document.createElement('tr');
+        const content = document.getElementsByClassName('content')[index];
+        content.href = resp.data[index].url.value;
 
-      for (let i = 1; i < 4; i++) { //ニュースの数の分セルを増やしている
-        // const tr = document.getElementById('table');
-        document.getElementById(`${index}`).innerHTML = `<td id = "${index}-${i}">aaaa</td>`;
-        console.log(document.getElementById(`${index}`).innerHTML);
-        // const td = document.createElement('td');
-        // td.setAttribute('id', (index) + '-' + i);
-        // tr.appendChild(td);
+        if (resp.data[index].target.value === '_self') {
+          content.setAttribute('target', '_self');
+        } else if (resp.data[index].target.value === '_blank') {
+          content.setAttribute('target', '_blank');
+        };
 
-      };
-
-      
-        // document.getElementById((index) + '-' + 1).textContent = resp.data[index].day.value;
-        // document.getElementById((index) + '-' + 2).textContent = resp.data[index].category.value;
-        // document.getElementById((index) + '-' + 2).style.color = '#fff';
-        
-        // const label = resp.data[index].label.value;
-        // switch (label) {
-        //   case 'product':
-        //     document.getElementById((index) + '-' + 2).style.backgroundColor = '#87cefa';
-        //     break;
-        //   case 'ir':
-        //     document.getElementById((index) + '-' + 2).style.backgroundColor = '#ff97c2';
-        //     break;
-        //   case 'company':
-        //     document.getElementById((index) + '-' + 2).style.backgroundColor = '#00fa9a';
-        //     break;
-        // }
-        // const link = document.createElement('a');
-        // document.getElementById((index) + '-' + 3).appendChild(link);
-        // link.setAttribute('id', 'link' + '-' + index);
-        // document.getElementById('link' + '-' + index).textContent = resp.data[index].content.value;
-        // document.getElementById('link' + '-' + index).href = resp.data[index].url.value;
-        // if (resp.data[index].target.value === '_self') {
-        //   document.getElementById('link' + '-' + index).setAttribute('target', '_self');
-        // } else if (resp.data[index].target.value === '_blank') {
-        //   document.getElementById('link' + '-' + index).setAttribute('target', '_blank');
-        // }
-
-        // const tr = document.createElement('tr');
-        // for (let i = 1; i < 4; i++) {
-        //   const td = document.createElement('td');
-        //   // td.setAttribute('id', (index) + '-' + i);
-        //   tr.appendChild(td);
-        // }
-        // tableElement.appendChild(tr);
-        // document.getElementById((index) + '-' + 1).textContent = resp.data[index].day.value;
-        // document.getElementById((index) + '-' + 2).textContent = resp.data[index].category.value;
-        // document.getElementById((index) + '-' + 2).style.color = '#fff';
-        
-        // const label = resp.data[index].label.value;
-        // switch (label) {
-        //   case 'product':
-        //     document.getElementById((index) + '-' + 2).style.backgroundColor = '#87cefa';
-        //     break;
-        //   case 'ir':
-        //     document.getElementById((index) + '-' + 2).style.backgroundColor = '#ff97c2';
-        //     break;
-        //   case 'company':
-        //     document.getElementById((index) + '-' + 2).style.backgroundColor = '#00fa9a';
-        //     break;
-        // }
-        // const link = document.createElement('a');
-        // document.getElementById((index) + '-' + 3).appendChild(link);
-        // link.setAttribute('id', 'link' + '-' + index);
-        // document.getElementById('link' + '-' + index).textContent = resp.data[index].content.value;
-        // document.getElementById('link' + '-' + index).href = resp.data[index].url.value;
-        // if (resp.data[index].target.value === '_self') {
-        //   document.getElementById('link' + '-' + index).setAttribute('target', '_self');
-        // } else if (resp.data[index].target.value === '_blank') {
-        //   document.getElementById('link' + '-' + index).setAttribute('target', '_blank');
-        // }
-        return;
       });
 
     })

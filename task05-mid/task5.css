@@ -68,3 +68,19 @@ th,td{
 	border: solid 1px;
 	padding: 1rem;
 }
+
+.category{
+  color: #fff;
+}
+
+.product{
+  background-color : #87cefa;
+}
+
+.ir{
+  background-color : #ff97c2;
+}
+
+.company{
+  background-color : #00fa9a;
+}
