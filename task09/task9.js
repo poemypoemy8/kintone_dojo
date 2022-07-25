@@ -3,11 +3,9 @@
   'use strict';
 
   kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], (event) => {
-    console.log(event); // debug
     const value = event.record.重複禁止項目.value;
     const field =  ['重複禁止項目'];
     const id = kintone.app.getId();
-    console.log(id);
     const query = (event.type === 'app.record.create.submit') ? `重複禁止項目 = "${value}"` : `重複禁止項目 = "${value}" and $id != "${id}"`;
     const params = {
       app: id,
@@ -18,7 +16,6 @@
 
     return kintone.api(kintone.api.url('/k/v1/records.json', true), 'GET', params)
       .then((resp) => {
-        console.log(resp); // debug
 
         if (resp.totalCount > 0) {
           const recordConfirm = window.confirm('レコードが重複しています。このまま保存しますか？');
@@ -36,5 +33,3 @@
   });
 
 })();
-
-// queryを絞り込みたい条件 重複しているレコードだけを持ってくる？
